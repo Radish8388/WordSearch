@@ -1,0 +1,49 @@
+﻿<Window x:Class="Word_Search.HighScores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Word_Search"
+        mc:Ignorable="d"
+        Title="High Scores"
+        Height="400" Width="450"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Grid Background="LightGreen">
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="🏆" FontSize="48" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="3"/>
+            <TextBlock Text="High Scores" FontSize="24" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3"/>
+            <TextBlock Text="Puzzle" FontSize="24" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" TextDecorations="Underline"/>
+            <TextBlock Text="Score" FontSize="24" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" TextDecorations="Underline"/>
+            <TextBlock Text="Date" FontSize="24" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" TextDecorations="Underline"/>
+            <TextBlock Text="Small" FontSize="24" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+            <TextBlock x:Name="SmallScore" FontSize="24" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1"/>
+            <TextBlock x:Name="SmallDate" FontSize="24" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2"/>
+            <TextBlock Text="Medium" FontSize="24" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+            <TextBlock x:Name="MediumScore" FontSize="24" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1"/>
+            <TextBlock x:Name="MediumDate" FontSize="24" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="2"/>
+            <TextBlock Text="Large" FontSize="24" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+            <TextBlock x:Name="LargeScore" FontSize="24" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1"/>
+            <TextBlock x:Name="LargeDate" FontSize="24" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="2"/>
+            <Button Content="OK" Width="60" Height="30" 
+                HorizontalAlignment="Center" IsDefault="True"
+                Grid.Row="6" Grid.ColumnSpan="3"
+                Click="OkButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
