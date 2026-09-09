@@ -1,6 +1,6 @@
 [Setup]
 AppName=Word Search
-AppVersion=1.0.0
+AppVersion=1.1.0
 DefaultDirName={autopf}\Radish\Word Search
 DefaultGroupName=Radish
 SetupIconFile=images\search2.ico

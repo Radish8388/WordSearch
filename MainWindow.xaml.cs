@@ -22,9 +22,10 @@ namespace Word_Search
         DispatcherTimer _hintTimer;
         DispatcherTimer _gameTimer;
         Stopwatch _playingTime;
-        List<string> _wordList = new List<string>();
         int _puzzleSize = 0;
-        WordSearchSession _session;
+        WordSearchSession _session8;
+        WordSearchSession _session12;
+        WordSearchSession _session16;
         double _leftMargin, _topMargin;
         double _cellSize;
         char[,] _grid;
@@ -260,8 +261,10 @@ namespace Word_Search
 
         private void Initialize()
         {
+            // get small word list
             string[] lines;
-            string wordFile = "pack://application:,,,/words.txt";
+            string wordFile = "pack://application:,,,/words/smallList.txt";
+            List<string> wordList = new List<string>();
 
             var uri = new Uri(wordFile, UriKind.Absolute);
             var stream = Application.GetResourceStream(uri);
@@ -271,32 +274,80 @@ namespace Word_Search
                 lines = content.Split('\n');
             }
 
-            _wordList.Clear();
+            wordList.Clear();
             for (int i = 0; i < lines.Length; i++)
             {
-                //_wordList.Add(lines[i]);
                 string word = lines[i].Trim();
                 if (!string.IsNullOrWhiteSpace(word))
-                    _wordList.Add(word);
+                    wordList.Add(word);
             }
-            _session = new WordSearchSession(_wordList);
+            _session8 = new WordSearchSession(wordList);
+
+            // get medium word list
+            wordFile = "pack://application:,,,/words/mediumList.txt";
+
+            uri = new Uri(wordFile, UriKind.Absolute);
+            stream = Application.GetResourceStream(uri);
+            using (StreamReader reader = new StreamReader(stream.Stream))
+            {
+                string content = reader.ReadToEnd();
+                lines = content.Split('\n');
+            }
+
+            wordList.Clear();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string word = lines[i].Trim();
+                if (!string.IsNullOrWhiteSpace(word))
+                    wordList.Add(word);
+            }
+            _session12 = new WordSearchSession(wordList);
+
+            // get large word list
+            wordFile = "pack://application:,,,/words/largeList.txt";
+
+            uri = new Uri(wordFile, UriKind.Absolute);
+            stream = Application.GetResourceStream(uri);
+            using (StreamReader reader = new StreamReader(stream.Stream))
+            {
+                string content = reader.ReadToEnd();
+                lines = content.Split('\n');
+            }
+
+            wordList.Clear();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string word = lines[i].Trim();
+                if (!string.IsNullOrWhiteSpace(word))
+                    wordList.Add(word);
+            }
+            _session16 = new WordSearchSession(wordList);
         }
 
         private void NewPuzzle(int size)
         {
-            WordSearchResult result = _session.GenerateNextPuzzle(_puzzleSize);
-            _grid = result.Grid;
-            _placedWords = result.PlacedWords;
-            _wordsRemaining = _placedWords.Count;
-            _topWord = 0;
-            _gameOver = false;
-            _gameScore = 0;
-            _hintsRemaining = 3;
-            _gameTimer.Start();
-            _playingTime.Restart();
-            DetermineSize();
-            RedrawPuzzle();
-            RedrawWordList();
+            WordSearchResult? result = null;
+            switch (size)
+            {
+                case 8: result = _session8.GenerateNextPuzzle(_puzzleSize); break;
+                case 12: result = _session12.GenerateNextPuzzle(_puzzleSize); break;
+                case 16: result = _session16.GenerateNextPuzzle(_puzzleSize); break;
+            }
+            if (result != null)
+            {
+                _grid = result.Grid;
+                _placedWords = result.PlacedWords;
+                _wordsRemaining = _placedWords.Count;
+                _topWord = 0;
+                _gameOver = false;
+                _gameScore = 0;
+                _hintsRemaining = 3;
+                _gameTimer.Start();
+                _playingTime.Restart();
+                DetermineSize();
+                RedrawPuzzle();
+                RedrawWordList();
+            }
         }
 
         private void DetermineSize()

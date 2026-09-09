@@ -218,7 +218,7 @@ namespace Word_Search
             _candidateWords.Clear();
             if (_unusedWords.Count > 0)
             {
-                int max = Math.Min(49, _unusedWords.Count - 1);
+                int max = Math.Min(_refillThreshold - 1, _unusedWords.Count - 1);
                 for (int i = max; i >= 0; i--)
                 {
                     _candidateWords.Add(_unusedWords[i]);
