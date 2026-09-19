@@ -26,9 +26,9 @@ namespace Word_Search
             HighScoresList? scores = null;
 
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string asteroidsFolder = Path.Combine(appDataFolder, "Radish");
-            asteroidsFolder = Path.Combine(asteroidsFolder, "WordSearch");
-            string filePath = Path.Combine(asteroidsFolder, "highscores.json");
+            string wsFolder = Path.Combine(appDataFolder, "Radish");
+            wsFolder = Path.Combine(wsFolder, "WordSearch");
+            string filePath = Path.Combine(wsFolder, "highscores.json");
 
             try
             {

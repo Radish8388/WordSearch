@@ -830,10 +830,10 @@ namespace Word_Search
 
             string json = JsonSerializer.Serialize(scores);
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string asteroidsFolder = System.IO.Path.Combine(appDataFolder, "Radish");
-            asteroidsFolder = System.IO.Path.Combine(asteroidsFolder, "WordSearch");
-            string filePath = System.IO.Path.Combine(asteroidsFolder, "highscores.json");
-            Directory.CreateDirectory(asteroidsFolder); // ensure the folder exists first
+            string wsFolder = System.IO.Path.Combine(appDataFolder, "Radish");
+            wsFolder = System.IO.Path.Combine(wsFolder, "WordSearch");
+            string filePath = System.IO.Path.Combine(wsFolder, "highscores.json");
+            Directory.CreateDirectory(wsFolder); // ensure the folder exists first
             File.WriteAllText(filePath, json);
         }
     }
